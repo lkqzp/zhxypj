@@ -18,43 +18,43 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/clazz")
-@Api(description = "课程表管理")
+@Api(description = "班级管理")
 public class ClazzController {
     @Autowired
     private IClazzService clazzService;
     @PostMapping("/selectAll")
-    @ApiOperation("课程查找")
+    @ApiOperation("班级查找")
     public Message findAll(){
         List<ClazzEx> list=clazzService.findAllEXClazz();
         return MessageUtil.success(list);
     }
     @GetMapping("/delete")
-    @ApiOperation("课程删除")
+    @ApiOperation("班级删除")
     public Message delete(int id){
 
         clazzService.deleteById(id);
         return MessageUtil.success();
     }
     @GetMapping("/add")
-    @ApiOperation("课程添加")
+    @ApiOperation("班级添加")
     public  Message addClazz(Clazz clazz){
         clazzService.saveOrupdate(clazz);
         return  MessageUtil.success();
     }
     @GetMapping("/update")
-    @ApiOperation("课程更新")
+    @ApiOperation("班级更新")
     public  Message updateClazz(Clazz clazz){
         clazzService.saveOrupdate(clazz);
         return  MessageUtil.success(clazz);
     }
     @PostMapping("/search")
-    @ApiOperation("课程条件查找")
+    @ApiOperation("班级条件查找")
     public Message search(String key,String word){
         List<ClazzEx> list=clazzService.search(key,word);
         return MessageUtil.success(list);
     }
     @GetMapping("/delBatch")
-    @ApiOperation("课程批量删除")
+    @ApiOperation("班级批量删除")
   public Message delBatch(int[] ids){
         for(int id:ids){
          clazzService.deleteById(id);
