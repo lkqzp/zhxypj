@@ -231,4 +231,10 @@
       region_id = #{regionId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectNameOrDes" resultMap="BaseResultMap" >
+    select * from briup_department where name like #{key} or description like #{key}
+  </select>
+
+
+
 </mapper>
