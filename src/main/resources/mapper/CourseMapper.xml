@@ -164,6 +164,9 @@
       <include refid="Example_Where_Clause" />
     </if>
   </select>
+
+
+
   <update id="updateByExampleSelective" parameterType="map">
     update briup_course
     <set>
@@ -231,4 +234,16 @@
       period = #{period,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="findAll" resultMap="BaseResultMap">
+        select * from briup_course
+    </select>
+  <select id="selectName" resultMap ="BaseResultMap">
+    select * from briup_course where name like #{word}
+  </select>
+  <select id="selectPeriod" resultMap ="BaseResultMap">
+    select * from briup_course where period like #{word}
+  </select>
+  <select id="selectnameOrPeriod" resultMap ="BaseResultMap">
+    select * from briup_course where name like #{word} or period like #{word}
+  </select>
 </mapper>
