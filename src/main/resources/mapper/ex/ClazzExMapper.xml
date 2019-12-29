@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.briup.zhxypj.mapper.ex.ClazzEXMapper">
+    <resultMap id="abn" type="com.briup.zhxypj.bean.ex.ClazzEx">
+        <id column="id" property="id" ></id>
+        <result column="name" property="name"></result>
+        <result column="description" property="description"></result>
+        <result column="serve_number" property="serveNumber"></result>
+        <result column="student_number" property="studentNumber"></result>
+        <association property="department" column="department_id" select="selectDepartment"></association>
+        <association property="teacher" column="teacher_id" select="selectTeacher"></association>
+    </resultMap>
+    <select id="findAll" resultMap="abn">
+    select * from briup_clazz
+    </select>
+    <select id="selectDepartment" resultType="com.briup.zhxypj.bean.Department">
+        select * from briup_department where id=#{id}
+    </select>
+    <select id="selectTeacher" resultType="com.briup.zhxypj.bean.Teacher">
+        select  * from briup_teacher where id=#{id}
+    </select>
+    <select id="selectWebuiOrDes" resultMap="abn">
+        select  * from briup_clazz where name like #{word} or description like #{word}
+    </select>
+    <select id="selectWebui" resultMap="abn">
+        select * from briup_clazz where name like #{word}
+    </select>
+    <select id="selectDes" resultMap="abn">
+        select * from briup_clazz where description like #{word}
+    </select>
+</mapper>
