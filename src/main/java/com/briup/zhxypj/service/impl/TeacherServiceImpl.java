@@ -78,6 +78,10 @@ public class TeacherServiceImpl implements ITeacherService {
 //            return  teacherEXMapper.findByName(word);
                 example.createCriteria().andNameLike(word);
             return teacherMapper.selectByExample(example);
+        }else if("性别".equals(key) || !"".equals(word)){
+            word = "%" + word + "%";
+            example.createCriteria().andGenderLike(word);
+            return teacherMapper.selectByExample(example);
         }
         return  null;
     }

@@ -74,7 +74,7 @@ public class TeacherController {
     @GetMapping("selectByCondi")
     @ApiOperation(value = "根据关键字查询")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "key" ,value = "关键字类型(教师姓名)" ,paramType = "query" ,dataType = "String"),
+            @ApiImplicitParam(name = "key" ,value = "关键字类型(教师姓名、性别)" ,paramType = "query" ,dataType = "String"),
             @ApiImplicitParam(name = "word" ,value = "关键字" ,paramType = "query" ,dataType = "String")
     })
     public Message selectByCondi(String key,String word){
