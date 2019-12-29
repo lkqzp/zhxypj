@@ -54,6 +54,7 @@ public class CourseController {
     public Message deleteAll(int[] ids){
         for(int id: ids){
             iCourseService.deleteById(id);
+
         }
         return MessageUtil.success();
     }
