@@ -1,6 +1,8 @@
 package com.briup.zhxypj.service;
 
 
-public interface IRegionService {
+import com.briup.zhxypj.bean.Region;
 
+public interface IRegionService {
+    Region findByNew() throws RuntimeException;
 }
