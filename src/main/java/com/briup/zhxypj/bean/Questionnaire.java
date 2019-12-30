@@ -10,7 +10,7 @@ public class Questionnaire implements Serializable {
     private Integer id;
 
     private String name;
-    @ApiModelProperty(hidden = true)
+
     private Date date;
 
     private String description;

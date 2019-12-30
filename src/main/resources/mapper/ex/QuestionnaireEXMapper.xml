@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.briup.zhxypj.mapper.ex.QuestionnaireEXMapper">
+
+
+    <resultMap id="aaa" type="com.briup.zhxypj.bean.ex.QuestionEX">
+        <id column="id" property="id"></id>
+        <result column="name" property="name"></result>
+        <result column="type" property="type" ></result>
+        <collection property="options" column="id"  ofType="com.briup.zhxypj.bean.Options" select="selectByQqn" ></collection>
+    </resultMap>
+
+    <insert id="addQuestionnaire" parameterType="com.briup.zhxypj.bean.Questionnaire">
+        <selectKey keyColumn="id" keyProperty="id" order="AFTER" resultType="int">
+            select LAST_INSERT_ID()
+        </selectKey>
+        insert into briup_questionnaire values(#{id},#{name},#{description},#{date})
+    </insert>
+
+
+    <select id="selectById" resultMap="aaa">
+    select b.*
+    from briup_question b,briup_qqn a
+    where b.id = a.question_id
+    and a.questionnaire_id = #{id}
+    </select>
+
+    <select id="selectByQqn" resultType="com.briup.zhxypj.bean.Options">
+    select * from briup_options where  question_id = #{question_id}
+    </select>
+
+
+
+</mapper>
+
+
