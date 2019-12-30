@@ -87,10 +87,10 @@ public class TeacherServiceImpl implements ITeacherService {
     }
 
     @Override
-    public void deleteMore(int[] ids) throws RuntimeMBeanException {
+    public void deleteMore(String[] ids) throws RuntimeMBeanException {
         for(int i = 0; i < ids.length;i++){
-
-            teacherMapper.deleteByPrimaryKey(ids[i]);
+            int id = Integer.parseInt(ids[i]);
+            teacherMapper.deleteByPrimaryKey(id);
         }
 
     }

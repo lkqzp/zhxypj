@@ -83,9 +83,9 @@ public class TeacherController {
     }
     @GetMapping("/deleteMore")
     @ApiOperation("批量删除")
-    @ApiImplicitParam(name = "ids" ,value="批量删除多个教师id" ,paramType = "query" ,dataType = "int" ,required = true,allowMultiple = true)
+    @ApiImplicitParam(name = "ids" ,value="批量删除多个教师id" ,paramType = "query" ,dataType = "String" ,required = true,allowMultiple = true)
 
-    public Message deleteMore(int[] ids){
+    public Message deleteMore(String[] ids){
         teacherService.deleteMore(ids);
         return MessageUtil.success();
     }

@@ -11,5 +11,5 @@ public interface ITeacherService {
     void saveOrUpdate(Teacher teacher) throws RuntimeMBeanException;
     Teacher findById(int id) throws  RuntimeMBeanException;
     List<Teacher> findByKey(String key,String word) throws  RuntimeMBeanException;
-    void deleteMore(int[] ids)throws RuntimeMBeanException;
+    void deleteMore(String[] ids)throws RuntimeMBeanException;
 }
