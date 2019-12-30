@@ -27,7 +27,7 @@ public class QuestionnaireServiceImpl implements IQuestionnaireService {
     }
 
     @Override
-    public void delete(int id) throws RuntimeException {
+    public void deleteById(int id) throws RuntimeException {
         QqnExample example = new QqnExample();
         example.createCriteria().andQuestionnaireIdEqualTo(id);
         qqnMapper.deleteByExample(example);
@@ -73,6 +73,13 @@ public class QuestionnaireServiceImpl implements IQuestionnaireService {
         }else{
             example.createCriteria().andNameLike(word);
             return questionnaireMapper.selectByExample(example);
+        }
+    }
+
+    @Override
+    public void delete(int[] ids) throws RuntimeException {
+        for(int i=0;i<ids.length;i++){
+            deleteById(ids[i]);
         }
     }
 }

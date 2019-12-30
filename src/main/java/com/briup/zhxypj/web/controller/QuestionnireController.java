@@ -34,7 +34,7 @@ public class QuestionnireController {
     @ApiOperation(value = "根据ID删除问卷")
     @ApiImplicitParam(name = "id",value = "问卷ID",paramType = "query" ,dataType = "int")
     public Message deleteById(int id){
-        questionnaireService.delete(id);
+        questionnaireService.deleteById(id);
         return  MessageUtil.success();
     }
     @GetMapping("/findById")
@@ -65,5 +65,11 @@ public class QuestionnireController {
         List<Question> questions = questionnaireService.selectAll();
         return MessageUtil.success(questions);
     }
-
+    @GetMapping("/delete")
+    @ApiOperation(value = "批量删除")
+    @ApiImplicitParam(name = "ids" ,value = "多个问卷ID" ,paramType = "query",dataType = "int",allowMultiple = true)
+    public  Message delete(int[] ids){
+        questionnaireService.delete(ids);
+        return MessageUtil.success();
+    }
 }
