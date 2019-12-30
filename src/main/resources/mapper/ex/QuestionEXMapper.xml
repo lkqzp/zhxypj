@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.briup.zhxypj.mapper.ex.QuestionEXMapper">
+    <resultMap id="Father" type="com.briup.zhxypj.bean.ex.QuestionExl">
+        <id column="id" property="id"></id>
+        <result column="name" property="name"></result>
+        <result column="type" property="type"></result>
+        <collection property="optionsEXES" ofType="com.briup.zhxypj.bean.ex.OptionsExl" select="selectoptions" column="id"></collection>
+    </resultMap>
+    <select id="findAll" resultMap="Father">
+        select * from briup_question
+    </select>
+    <select id="selectoptions" resultType="com.briup.zhxypj.bean.ex.OptionsExl">
+        select * from briup_options where question_id=#{id}
+    </select>
+
+    <select id="findByName" resultMap="Father">
+        select * from briup_question where name like #{word}
+    </select>
+</mapper>
