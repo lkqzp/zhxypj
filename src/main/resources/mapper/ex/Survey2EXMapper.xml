@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.briup.zhxypj.mapper.ex.Survey2EXMapper">
+    <resultMap id="ppp" type="com.briup.zhxypj.bean.ex.Survey2EX">
+        <id column="id" property="id"></id>
+        <result column="status" property="statue"></result>
+        <result column="code" property="code"></result>
+        <result column="surveyday" property="surveyday"></result>
+        <result column="departmentId" property="departmentId"></result>
+        <result column="courseId" property="courseId"></result>
+        <result column="clazzId" property="clazzId"></result>
+        <result column="userId" property="userId"></result>
+        <result column="questionnaireId" property="questionnaireId"></result>
+        <result column="average" property="average"></result>
+        
+
+    </resultMap>
+    
+    <select id="selectByMessage" resultMap="">
+        
+    </select>
+</mapper>
