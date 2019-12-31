@@ -1,13 +1,22 @@
 package com.briup.zhxypj.bean;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Question implements Serializable {
     private Integer id;
 
     private String name;
 
+
+
     private String type;
+
+
+
+
+
+
 
     private static final long serialVersionUID = 1L;
 
@@ -48,4 +57,8 @@ public class Question implements Serializable {
         sb.append("]");
         return sb.toString();
     }
+
+
+
+
 }

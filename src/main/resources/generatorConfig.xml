@@ -49,7 +49,7 @@
 		</javaClientGenerator>
 
 
-		<!-- 映射配置 -->
+		<!-- 映射配置-->
 		<table tableName="briup_clazz" domainObjectName="Clazz"></table>
 		<table tableName="briup_course" domainObjectName="Course"></table>
 		<table tableName="briup_department" domainObjectName="Department"></table>
@@ -59,8 +59,10 @@
 		<table tableName="briup_question" domainObjectName="Question"></table>
 		<table tableName="briup_questionnaire" domainObjectName="Questionnaire"></table>
 		<table tableName="briup_region" domainObjectName="Region"></table>
-		<table tableName="briup_survey" domainObjectName="Survey"></table>
+
 		<table tableName="briup_teacher" domainObjectName="Teacher"></table>
 
+
+		<table tableName="briup_survey" domainObjectName="Survey"></table>
 	</context>
 </generatorConfiguration>
