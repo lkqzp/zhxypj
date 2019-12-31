@@ -1,31 +1,30 @@
-package com.briup.zhxypj.bean;
+package com.briup.zhxypj.bean.ex;
+
+import com.briup.zhxypj.bean.Clazz;
+import com.briup.zhxypj.bean.Course;
+import com.briup.zhxypj.bean.Questionnaire;
+import com.briup.zhxypj.bean.Teacher;
+import io.swagger.annotations.ApiModelProperty;
 
 import java.io.Serializable;
 import java.util.Date;
 
-public class Survey implements Serializable {
-
+public class Survey2EX implements Serializable {
     private Integer id;
-
     private String status;
-
     private Integer code;
-
     private Date surveyday;
-
     private Integer departmentId;
-
     private Integer courseId;
-
     private Integer clazzId;
-
     private Integer userId;
-
     private Integer questionnaireId;
-
     private Double average;
 
-    private static final long serialVersionUID = 1L;
+    private Clazz clazz;
+    private Course course;
+    private Questionnaire questionnaire;
+    private Teacher teacher;
 
     public Integer getId() {
         return id;
@@ -40,7 +39,7 @@ public class Survey implements Serializable {
     }
 
     public void setStatus(String status) {
-        this.status = status == null ? null : status.trim();
+        this.status = status;
     }
 
     public Integer getCode() {
@@ -107,24 +106,35 @@ public class Survey implements Serializable {
         this.average = average;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", status=").append(status);
-        sb.append(", code=").append(code);
-        sb.append(", surveyday=").append(surveyday);
-        sb.append(", departmentId=").append(departmentId);
-        sb.append(", courseId=").append(courseId);
-        sb.append(", clazzId=").append(clazzId);
-        sb.append(", userId=").append(userId);
-        sb.append(", questionnaireId=").append(questionnaireId);
-        sb.append(", average=").append(average);
-        sb.append(", serialVersionUID=").append(serialVersionUID);
-        sb.append("]");
-        return sb.toString();
+    public Clazz getClazz() {
+        return clazz;
+    }
+
+    public void setClazz(Clazz clazz) {
+        this.clazz = clazz;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
+    }
+
+    public Questionnaire getQuestionnaire() {
+        return questionnaire;
+    }
+
+    public void setQuestionnaire(Questionnaire questionnaire) {
+        this.questionnaire = questionnaire;
+    }
+
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
     }
 }
