@@ -10,26 +10,21 @@
         <collection property="options" column="id"  ofType="com.briup.zhxypj.bean.Options" select="selectByQqn" ></collection>
     </resultMap>
 
+    <select id="selectById" resultMap="aaa">
+        select b.* from briup_question b,briup_qqn a where b.id = a.question_id and a.questionnaire_id = #{id}
+    </select>
+
+    <select id="selectByQqn" resultType="com.briup.zhxypj.bean.Options">
+        select * from briup_options where  question_id = #{question_id}
+    </select>
+
+
     <insert id="addQuestionnaire" parameterType="com.briup.zhxypj.bean.Questionnaire">
         <selectKey keyColumn="id" keyProperty="id" order="AFTER" resultType="int">
             select LAST_INSERT_ID()
         </selectKey>
         insert into briup_questionnaire values(#{id},#{name},#{description},#{date})
     </insert>
-
-
-    <select id="selectById" resultMap="aaa">
-    select b.*
-    from briup_question b,briup_qqn a
-    where b.id = a.question_id
-    and a.questionnaire_id = #{id}
-    </select>
-
-    <select id="selectByQqn" resultType="com.briup.zhxypj.bean.Options">
-    select * from briup_options where  question_id = #{question_id}
-    </select>
-
-
 
 </mapper>
 

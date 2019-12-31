@@ -33,13 +33,4 @@ public interface CourseMapper {
     int updateByPrimaryKeyWithBLOBs(Course record);
 
     int updateByPrimaryKey(Course record);
-
-
-    
-
-    List<Course> selectnameOrPeriod(String word);
-
-    List<Course> selectName(String word);
-
-    List<Course> selectPeriod(String word);
 }

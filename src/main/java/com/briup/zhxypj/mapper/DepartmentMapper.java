@@ -33,5 +33,4 @@ public interface DepartmentMapper {
     int updateByPrimaryKeyWithBLOBs(Department record);
 
     int updateByPrimaryKey(Department record);
-    List<Department> selectNameOrDes(String key);
 }
