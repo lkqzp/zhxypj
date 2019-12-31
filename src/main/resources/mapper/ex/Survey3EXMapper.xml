@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace= "com.briup.zhxypj.mapper.ex.Survey3EXMapper">
+    <resultMap id="selectall" type="com.briup.zhxypj.bean.ex.Survey3EX">
+        <id column="id" property="id"></id>
+        <result column="status" property="status"></result>
+        <result column="userId" property="userId"></result>
+        <result column="average" property="average"></result>
+        <result column="Date" property="Date"></result>
+        <association property="department" column="department_id" select="selectByDepart"></association>
+        <association property="course" column="course_id" select="selectByCourse"></association>
+        <association property="clazz" column="clazz_id" select="selectByClazz"></association>
+        <association property="questionnaire" column="questionnaire_id" select="selectByQnnire"></association>
+    </resultMap>
+    <select id="findAll" resultMap="selectall">
+        select * from briup_survey
+    </select>
+    <select id="selectByDepart" resultType="com.briup.zhxypj.bean.Department">
+        select * from briup_department where id = #{department_id}
+     </select>
+    <select id="selectByCourse" resultType="com.briup.zhxypj.bean.Course">
+        select * from briup_course where id = #{course_id}
+    </select>
+    <select id="selectByClazz" resultType="com.briup.zhxypj.bean.Clazz">
+        select * from briup_clazz where id = #{clazz_id}
+    </select>
+    <select id="selectByQnnire" resultType="com.briup.zhxypj.bean.Questionnaire" >
+        select * from briup_questionnaire where id = #{questionnaire_id}
+    </select>
+
+<!--    <select id="findByCondi" resultMap=""-->
+</mapper>
