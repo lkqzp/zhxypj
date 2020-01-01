@@ -4,12 +4,9 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class Survey implements Serializable {
-<<<<<<< HEAD
-=======
     private Integer id;
->>>>>>> af42c58b7bdfda1501d55a7a0dcf01549227bea0
 
-    private Integer id;
+
     private String status;
 
     private Integer code;
