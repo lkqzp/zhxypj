@@ -13,30 +13,22 @@ public class Survey3EX implements Serializable {
 
     private Integer code;
 
-    private Integer userId;
-
     private Double average;
 
     private Date surveyday;
 
-    private Department department;
+    private Department3EX department;
 
-    private Course course;
+    private Course3EX course;
 
-    private Clazz clazz;
+    private Clazz3EX clazz;
 
-    private Questionnaire questionnaire;
+    private List<Questionnaire> questionnaire;
+
+    private Teacher3EX teacher;
 
     public Integer getId() {
         return id;
-    }
-
-    public Clazz getClazz() {
-        return clazz;
-    }
-
-    public void setClazz(Clazz clazz) {
-        this.clazz = clazz;
     }
 
     public void setId(Integer id) {
@@ -59,14 +51,6 @@ public class Survey3EX implements Serializable {
         this.code = code;
     }
 
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
-
     public Double getAverage() {
         return average;
     }
@@ -83,27 +67,43 @@ public class Survey3EX implements Serializable {
         this.surveyday = surveyday;
     }
 
-    public Department getDepartment() {
+    public Department3EX getDepartment() {
         return department;
     }
 
-    public void setDepartment(Department department) {
+    public void setDepartment(Department3EX department) {
         this.department = department;
     }
 
-    public Course getCourse() {
+    public Course3EX getCourse() {
         return course;
     }
 
-    public void setCourse(Course course) {
+    public void setCourse(Course3EX course) {
         this.course = course;
     }
 
-    public Questionnaire getQuestionnaire() {
+    public Clazz3EX getClazz() {
+        return clazz;
+    }
+
+    public void setClazz(Clazz3EX clazz) {
+        this.clazz = clazz;
+    }
+
+    public List<Questionnaire> getQuestionnaire() {
         return questionnaire;
     }
 
-    public void setQuestionnaire(Questionnaire questionnaire) {
+    public void setQuestionnaire(List<Questionnaire> questionnaire) {
         this.questionnaire = questionnaire;
+    }
+
+    public Teacher3EX getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(Teacher3EX teacher) {
+        this.teacher = teacher;
     }
 }
