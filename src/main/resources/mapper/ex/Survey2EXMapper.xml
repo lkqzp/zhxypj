@@ -3,20 +3,52 @@
 <mapper namespace="com.briup.zhxypj.mapper.ex.Survey2EXMapper">
     <resultMap id="ppp" type="com.briup.zhxypj.bean.ex.Survey2EX">
         <id column="id" property="id"></id>
-        <result column="status" property="statue"></result>
+        <result column="status" property="status"></result>
         <result column="code" property="code"></result>
         <result column="surveyday" property="surveyday"></result>
-        <result column="departmentId" property="departmentId"></result>
+        <!--        <result column="departmentId" property="departmentId"></result>-->
         <result column="courseId" property="courseId"></result>
         <result column="clazzId" property="clazzId"></result>
         <result column="userId" property="userId"></result>
         <result column="questionnaireId" property="questionnaireId"></result>
-        <result column="average" property="average"></result>
-        
+        <!--        <result column="average" property="average"></result>-->
 
+        <association property="clazz2EX" column="clazz_id" select="selectClazz"></association>
+        <association property="course2EX" column="course_id" select="selectCourse"></association>
+        <association property="questionnaire2EX" column="questionnaire_id" select="selectQuestionnaire"></association>
+        <association property="teacher2EX" column="user_id" select="selectTeacher"></association>
     </resultMap>
-    
-    <select id="selectByMessage" resultMap="">
-        
+
+    <select id="findAll" resultMap="ppp">
+        select * from briup_survey
     </select>
+    <select id="selectClazz" resultType="com.briup.zhxypj.bean.ex.Clazz2EX">
+        select name from briup_clazz where id=#{id}
+    </select>
+    <select id="selectCourse" resultType="com.briup.zhxypj.bean.ex.Course2EX">
+        select name from briup_course where id=#{id}
+    </select>
+    <select id="selectQuestionnaire" resultType="com.briup.zhxypj.bean.ex.Questionnaire2EX">
+        select name from briup_questionnaire where id=#{id}
+    </select>
+    <select id="selectTeacher" resultType="com.briup.zhxypj.bean.ex.Teacher2EX">
+        select name from briup_teacher where id=#{id}
+     </select>
+
+    <select id="selectByMessage" resultMap="ppp">
+        select * from briup_survey where clazz_id = (select id from briup_clazz where name like #{word})
+        or course_id = (select id from briup_course where name like #{word})
+        or questionnaire_id = (select id from briup_questionnaire where name like #{word})
+        or user_id = (select id from briup_teacher where name like #{word})
+    </select>
+
+    <select id="startSurvey" resultType="com.briup.zhxypj.bean.ex.Survey2EX">
+        select * from briup_survey where id=#{id}
+    </select>
+    <update id="updateCode" parameterType="com.briup.zhxypj.bean.ex.Survey2EX">
+        update briup_survey set code=#{code} where id=#{id}
+    </update>
+    <update id="updateStatus" parameterType="com.briup.zhxypj.bean.ex.Survey2EX">
+        update briup_survey set status=#{status} where id=#{id}
+    </update>
 </mapper>
