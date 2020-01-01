@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.briup.zhxypj.mapper.ex.SurveyEXlMapper">
+    <resultMap id="abn" type="com.briup.zhxypj.bean.ex.SurveyEXl">
+        <id column="id" property="id"></id>
+        <result column="status" property="status"></result>
+        <result column="code" property="code"></result>
+        <result column="surveyday" property="surveyday"></result>
+        <result column="average" property="average"></result>
+       <association property="department" column="department_id" select="selectdepartment" ></association>
+        <association property="course" column="course_id" select="selectcourse"></association>
+        <association property="aClass" column="clazz_id" select="selectclazz"></association>
+        <association property="teacher" column="user_id" select="selectteacher"></association>
+        <association property="questionnaire" column="questionnaire_id" select="selectq"></association>
+
+    </resultMap>
+
+
+    <resultMap id="abb" type="com.briup.zhxypj.bean.ex.Result">
+        <result column="tname" property="tname"></result>
+        <result column="cname" property="cname"></result>
+        <result column="ename" property="ename"></result>
+        <result column="sdate" property="sdate"></result>
+        <result column="dname" property="dname"></result>
+        <result column="qname" property="qname"></result>
+        <result column="code" property="code"></result>
+
+    </resultMap>
+    <select id="selectByWord" resultType="com.briup.zhxypj.bean.ex.Result">
+        select t.name tname,c.name cname,e.name ename,d.name dname,q.name qname,s.surveyday sdate,s.code code
+        from briup_survey s,briup_department d,briup_course e,briup_clazz c,briup_questionnaire q,briup_teacher t
+        where s.department_id=d.id
+        and s.course_id=e.id and s.clazz_id=c.id and s.questionnaire_id=q.id and s.user_id=t.id and (d.name like #{word} or e.name like #{word} or
+        c.name like #{word} or q.name like #{word} or t.name like #{word})
+    </select>
+    <select id="findAllSurvey" resultType="com.briup.zhxypj.bean.ex.Result">
+        select t.name tname,c.name cname,e.name ename,d.name dname,q.name qname,s.surveyday sdate,s.code code
+        from briup_survey s,briup_department d,briup_course e,briup_clazz c,briup_questionnaire q,briup_teacher t
+        where s.department_id=d.id
+        and s.course_id=e.id and s.clazz_id=c.id and s.questionnaire_id=q.id and s.user_id=t.id
+    </select>
+
+
+</mapper>

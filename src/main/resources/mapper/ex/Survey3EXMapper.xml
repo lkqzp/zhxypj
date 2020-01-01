@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace= "com.briup.zhxypj.mapper.ex.Survey3EXMapper">
+    <resultMap id="selectall" type="com.briup.zhxypj.bean.ex.Survey3EX">
+        <id column="id" property="id"></id>
+        <result column="status" property="status"></result>
+        <result column="userId" property="userId"></result>
+        <result column="code" property="code"></result>
+        <result column="surveyday" property="surveyday"></result>
+        <result column="average" property="average"></result>
+        <result column="Date" property="sury"></result>
+        <association property="department" column="department_id" select="selectByDepart"></association>
+        <association property="course" column="course_id" select="selectByCourse"></association>
+        <association property="clazz" column="clazz_id" select="selectByClazz"></association>
+        <association property="questionnaire" column="questionnaire_id" select="selectByQnnire"></association>
+        <association property="teacher" column="user_id" select="selectByTea"></association>
+    </resultMap>
+    <select id="findAll" resultMap="selectall">
+        select * from briup_survey
+    </select>
+    <select id="selectByDepart" resultType="com.briup.zhxypj.bean.ex.Department3EX">
+        select name from briup_department where id = #{department_id}
+     </select>
+    <select id="selectByCourse" resultType="com.briup.zhxypj.bean.ex.Course3EX">
+        select name from briup_course where id = #{course_id}
+    </select>
+    <select id="selectByClazz" resultType="com.briup.zhxypj.bean.ex.Clazz3EX">
+        select name from briup_clazz where id = #{clazz_id}
+    </select>
+    <select id="selectByQnnire" resultType="com.briup.zhxypj.bean.ex.Questionnaire3EX" >
+        select name from briup_questionnaire where id = #{questionnaire_id}
+    </select>
+    <select id="selectByTea" resultType="com.briup.zhxypj.bean.ex.Teacher3EX">
+        select name from briup_teacher where id = #{teacher_id}
+    </select>
+<!--    <resultMap id="selectbycondi" type="com.briup.zhxypj.bean.Questionnaire">-->
+<!--        -->
+<!--    </resultMap>-->
+    <select id="findByCondi" resultMap="selectall">
+        select *
+        from briup_survey
+        where questionnaire_id =( select  id from briup_questionnaire where name like #{word} )
+        or department_id = ( select id from briup_department where name like #{word} )
+        or course_id =( select  id from briup_course where name like #{word} )
+        or clazz_id =( select  id from briup_clazz where name like #{word} )
+        or user_id =( select  id from briup_teacher where name like #{word} )
+    </select>
+    <resultMap id="selectById" type="com.briup.zhxypj.bean.ex.Survey3EX">
+        <id column="id" property="id"></id>
+        <result column="status" property="status"></result>
+        <result column="userId" property="userId"></result>
+        <result column="code" property="code"></result>
+        <result column="surveyday" property="surveyday"></result>
+        <result column="average" property="average"></result>
+        <result column="Date" property="sury"></result>
+        <association property="course" column="course_id" select="selectByCourse2"></association>
+        <association property="clazz" column="clazz_id" select="selectByClazz2"></association>
+        <association property="teacher" column="user_id" select="selectByTea2"></association>
+        <collection property="questionnaire" column="questionnaire_id"  select="selectByQnnire2"></collection>
+    </resultMap>
+
+    <select id="findById" resultMap="selectById">
+        select * from briup_survey where id = #{id};
+    </select>
+    <select id="selectByCourse2" resultType="com.briup.zhxypj.bean.ex.Course3EX">
+        select name from briup_course where id = #{course_id}
+    </select>
+    <select id="selectByClazz2" resultType="com.briup.zhxypj.bean.ex.Clazz3EX">
+        select name from briup_clazz where id = #{clazz_id}
+    </select>
+    <select id="selectByTea2" resultType="com.briup.zhxypj.bean.ex.Teacher3EX">
+        select name from briup_teacher where id = #{teacher_id}
+    </select>
+
+    <select id="selectByQnnire2" resultType="com.briup.zhxypj.bean.Options">
+    select b.*
+    from briup_options b,briup_qqn a
+    where b.question_id = a.question_id
+    and a.questionnaire_id = #{id}
+    </select>
+
+    <update id="update" parameterType="com.briup.zhxypj.bean.Survey">
+        update briup_survey set status = #{status} where id = #{id}
+    </update>
+    
+</mapper>
