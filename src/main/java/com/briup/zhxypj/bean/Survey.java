@@ -1,18 +1,19 @@
 package com.briup.zhxypj.bean;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-
 import java.io.Serializable;
 import java.util.Date;
-@ApiModel
+
 public class Survey implements Serializable {
+<<<<<<< HEAD
+=======
+    private Integer id;
+>>>>>>> af42c58b7bdfda1501d55a7a0dcf01549227bea0
 
     private Integer id;
     private String status;
-    @ApiModelProperty(hidden = true)
+
     private Integer code;
-    @ApiModelProperty(hidden = true)
+
     private Date surveyday;
 
     private Integer departmentId;
@@ -24,7 +25,7 @@ public class Survey implements Serializable {
     private Integer userId;
 
     private Integer questionnaireId;
-    @ApiModelProperty(hidden = true)
+
     private Double average;
 
     private static final long serialVersionUID = 1L;
