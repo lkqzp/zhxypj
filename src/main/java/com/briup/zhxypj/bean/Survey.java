@@ -7,23 +7,22 @@ import java.io.Serializable;
 import java.util.Date;
 @ApiModel
 public class Survey implements Serializable {
-    @ApiModelProperty(hidden = true)
-    private Integer id;
 
+    private Integer id;
     private String status;
     @ApiModelProperty(hidden = true)
     private Integer code;
     @ApiModelProperty(hidden = true)
     private Date surveyday;
-    @ApiModelProperty(hidden = true)
+
     private Integer departmentId;
-    @ApiModelProperty(hidden = true)
+
     private Integer courseId;
-    @ApiModelProperty(hidden = true)
+
     private Integer clazzId;
-    @ApiModelProperty(hidden = true)
+
     private Integer userId;
-    @ApiModelProperty(hidden = true)
+
     private Integer questionnaireId;
     @ApiModelProperty(hidden = true)
     private Double average;
