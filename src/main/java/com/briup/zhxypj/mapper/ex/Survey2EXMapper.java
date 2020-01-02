@@ -12,4 +12,11 @@ public interface Survey2EXMapper {
     Survey2EX startSurvey(int id);
     void updateCode(int code,int id);
     void updateStatus(String status,int id);
+
+    List<Survey2EX> selectByDepart(String depart);
+    List<Survey2EX> selectByClazz(String clazz);
+    List<Survey2EX> selectByCourse(String course);
+    List<Survey2EX> selectByQuest(String quest);
+
+    List<Survey2EX> selectByWord(String word);
 }

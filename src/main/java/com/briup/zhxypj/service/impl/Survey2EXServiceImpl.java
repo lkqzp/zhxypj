@@ -61,4 +61,23 @@ public class Survey2EXServiceImpl implements ISurvey2EXService {
         return survey2EX;
     }
 
+    @Override
+    public List<Survey2EX> selectByWord(String depart, String clazz, String course, String quest, String word) throws RuntimeException {
+
+        if ((depart==null||"".equals(depart))&&(clazz==null||"".equals(clazz))&&(course==null||"".equals(course))&&(quest==null||"".equals(quest))&&(word==null||"".equals(word))){
+            return findAll();
+        }else if (!"".equals(depart)&&(clazz==null||"".equals(clazz))&&(course==null||"".equals(course))&&(quest==null||"".equals(quest))&&(word==null||"".equals(word))){
+            return survey2EXMapper.selectByDepart(depart);
+        }else if ((depart==null||"".equals(depart))&&!"".equals(clazz)&&(course==null||"".equals(course))&&(quest==null||"".equals(quest))&&(word==null||"".equals(word))){
+            return survey2EXMapper.selectByClazz(clazz);
+        }else if ((depart==null||"".equals(depart))&&(clazz==null||"".equals(clazz))&&!"".equals(course)&&(quest==null||"".equals(quest))&&(word==null||"".equals(word))){
+            return survey2EXMapper.selectByCourse(course);
+        }else if ((depart==null||"".equals(depart))&&(clazz==null||"".equals(clazz))&&(course==null||"".equals(course))&&!"".equals(quest)&&(word==null||"".equals(word))){
+            return survey2EXMapper.selectByQuest(quest);
+        }else if ((depart==null||"".equals(depart))&&(clazz==null||"".equals(clazz))&&(course==null||"".equals(course))&&(quest==null||"".equals(quest))&&!"".equals(word)){
+            return survey2EXMapper.selectByWord(word);
+        }
+        return null;
+    }
+
 }

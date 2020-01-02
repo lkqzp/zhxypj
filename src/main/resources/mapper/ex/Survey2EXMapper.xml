@@ -6,17 +6,18 @@
         <result column="status" property="status"></result>
         <result column="code" property="code"></result>
         <result column="surveyday" property="surveyday"></result>
-        <!--        <result column="departmentId" property="departmentId"></result>-->
+        <result column="departmentId" property="departmentId"></result>
         <result column="courseId" property="courseId"></result>
         <result column="clazzId" property="clazzId"></result>
         <result column="userId" property="userId"></result>
         <result column="questionnaireId" property="questionnaireId"></result>
-        <!--        <result column="average" property="average"></result>-->
+        <result column="average" property="average"></result>
 
         <association property="clazz2EX" column="clazz_id" select="selectClazz"></association>
         <association property="course2EX" column="course_id" select="selectCourse"></association>
         <association property="questionnaire2EX" column="questionnaire_id" select="selectQuestionnaire"></association>
         <association property="teacher2EX" column="user_id" select="selectTeacher"></association>
+        <association property="department2EX" column="department_id" select="selectDepartment"></association>
     </resultMap>
 
     <select id="findAll" resultMap="ppp">
@@ -34,6 +35,9 @@
     <select id="selectTeacher" resultType="com.briup.zhxypj.bean.ex.Teacher2EX">
         select name from briup_teacher where id=#{id}
      </select>
+    <select id="selectDepartment" resultType="com.briup.zhxypj.bean.ex.Department2EX">
+        select name from briup_department where id=#{id}
+    </select>
 
     <select id="selectByMessage" resultMap="ppp">
         select * from briup_survey where clazz_id = (select id from briup_clazz where name like #{word})
@@ -51,4 +55,23 @@
     <update id="updateStatus" parameterType="com.briup.zhxypj.bean.ex.Survey2EX">
         update briup_survey set status=#{status} where id=#{id}
     </update>
+
+    <select id="selectByDepart" resultMap="ppp">
+        select * from briup_survey where department_id=(select id from briup_department where name like #{depart})
+    </select>
+    <select id="selectByClazz" resultMap="ppp">
+        select * from briup_survey where clazz_id=(select id from briup_clazz where name like #{clazz})
+    </select>
+    <select id="selectByCourse" resultMap="ppp">
+        select * from briup_survey where course_id=(select id from briup_course where name like #{course})
+    </select>
+    <select id="selectByQuest" resultMap="ppp">
+        select * from briup_survey where questionnaire_id=(select id from briup_questionnaire where name like #{quest})
+    </select>
+    <select id="selectByWord" resultMap="ppp">
+        select * from briup_survey where department_id=(select id from briup_department where name like #{word})
+        or clazz_id=(select id from briup_clazz where name like #{word})
+        or course_id=(select id from briup_course where name like #{word})
+        or questionnaire_id=(select id from briup_questionnaire where name like #{word})
+    </select>
 </mapper>
