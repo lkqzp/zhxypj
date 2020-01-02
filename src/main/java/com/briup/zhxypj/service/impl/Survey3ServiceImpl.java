@@ -39,8 +39,24 @@ public class Survey3ServiceImpl implements ISurvey3Service {
 
     @Override
     public Survey3EX findById(int id,String status) throws RuntimeException {
-        surveyEXMapper.update(id,status);
+
+        Survey survey = surveyMapper.selectByPrimaryKey(id);
+        System.out.println(survey.getStatus());
+        if("审核".equals(survey.getStatus())){
+            if(status != null)
+            surveyEXMapper.update(id,status);
+
+        }else if("未开启".equals(survey.getStatus())){
+            throw new RuntimeException("课调未开启");
+        }else if("开启".equals(survey.getStatus())){
+            throw new RuntimeException("课调未结束");
+        }else if("结束".equals(survey.getStatus())){
+            throw  new RuntimeException("课调未开启审核");
+        }else if("审核通过".equals(survey.getStatus()) || "审核未通过".equals(survey.getStatus())){
+            throw new RuntimeException("课调已审核");
+        }
         return surveyEXMapper.findById(id);
+
     }
 
 

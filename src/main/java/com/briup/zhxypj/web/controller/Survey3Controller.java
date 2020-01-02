@@ -37,7 +37,7 @@ public class Survey3Controller {
     @GetMapping("/findById")
     @ApiOperation(value = "根据课调ID审核")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "id" ,value = "课调ID",paramType = "query",dataType = "int"),
+            @ApiImplicitParam(name = "id" ,value = "课调ID",paramType = "query",dataType = "int",required = true),
             @ApiImplicitParam(name = "status",value = "课调的审核状态", paramType = "query",dataType = "String")
     })
     public Message findById(int id,String status){
