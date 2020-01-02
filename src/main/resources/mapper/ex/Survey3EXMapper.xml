@@ -82,5 +82,15 @@
     <update id="update" parameterType="com.briup.zhxypj.bean.Survey">
         update briup_survey set status = #{status} where id = #{id}
     </update>
-    
+
+    <select id="allFind" resultMap="selectall">
+        select * from briup_survey where status = "审核通过"
+    </select>
+    <select id="allFindById" resultMap="selectById">
+        select * from briup_survey where status = "审核通过" and id = #{id}
+    </select>
+
+    <update id="updateAvg" parameterType="com.briup.zhxypj.bean.Survey">
+        update briup_survey set average = #{average} where id = #{id}
+    </update>
 </mapper>

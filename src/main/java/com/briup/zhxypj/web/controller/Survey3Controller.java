@@ -44,4 +44,12 @@ public class Survey3Controller {
        Survey3EX survey3EX =  survey3Service.findById(id,status);
        return MessageUtil.success(survey3EX);
     }
+    @GetMapping("/selectById")
+    @ApiOperation(value = "根据课调ID查询")
+    @ApiImplicitParam(name = "id" ,value = "课调ID",paramType = "query",dataType = "int",required = true)
+    public Message selectById(int id){
+        Survey3EX survey3EX =  survey3Service.selectById(id);
+        return MessageUtil.success(survey3EX);
+    }
+
 }
