@@ -8,6 +8,7 @@ import com.briup.zhxypj.service.ISurvey2EXService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -41,22 +42,22 @@ public class Survey2EXServiceImpl implements ISurvey2EXService {
     @Override
     public Survey2EX startOrOverSurvey(int id) throws RuntimeException {
         Survey2EX survey2EX=survey2EXMapper.startSurvey(id);
-        if (survey2EX.getStatus()=="未开启"){
-            int code=1;
-            survey2EXMapper.updateCode(code,id);
+        if ("未开启".equals(survey2EX.getStatus())){
+            int code = (int)(Math.random() * 9000 + 1000);
+            long code1=code*new Date().getTime();
+            String code2=code1 +  "";
+            String code3=code2.substring(0,4);
+            int code4=Integer.parseInt(code3);
+            survey2EXMapper.updateCode(code4,id);
             String status="开启";
             survey2EXMapper.updateStatus(status,id);
-            return survey2EX;
+            return survey2EXMapper.startSurvey(id);
 
-        }else if (survey2EX.getStatus()=="开启"){
+        }else if ("开启".equals(survey2EX.getStatus())){
             String status="结束";
             survey2EXMapper.updateStatus(status,id);
-            System.out.println("课调结束");
-            return survey2EX;
+            throw new RuntimeException("课调结束");
         }
-        System.out.println("111111111111");
-        System.out.println(survey2EX.getStatus());
-        System.out.println(survey2EX.getCode());
         return survey2EX;
     }
 

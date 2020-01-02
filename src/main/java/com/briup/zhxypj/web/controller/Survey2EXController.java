@@ -2,6 +2,7 @@ package com.briup.zhxypj.web.controller;
 
 import com.briup.zhxypj.bean.Survey;
 import com.briup.zhxypj.bean.ex.Survey2EX;
+import com.briup.zhxypj.mapper.SurveyMapper;
 import com.briup.zhxypj.service.ISurvey2EXService;
 import com.briup.zhxypj.util.Message;
 import com.briup.zhxypj.util.MessageUtil;
@@ -23,6 +24,8 @@ public class Survey2EXController {
 
     @Autowired
     private ISurvey2EXService iSurvey2EXService;
+    @Autowired
+    private SurveyMapper surveyMapper;
     @GetMapping("/findByMessage")
     @ApiOperation(value = "/查询课调")
     @ApiImplicitParam(name = "word",value = "String",paramType = "query",dataType = "String")
